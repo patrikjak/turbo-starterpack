@@ -1,0 +1,24 @@
+{
+  "name": "turbo-starter",
+  "version": "1.0.0",
+  "description": "Helper | Validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: no ../test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrikjak/turbo-starterpack.git"
+  },
+  "keywords": [
+    "starterpack",
+    "helper",
+    "simple-validation"
+  ],
+  "author": "Patrik Jakab",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patrikjak/turbo-starterpack/issues"
+  },
+  "homepage": "https://github.com/patrikjak/turbo-starterpack#readme"
+}

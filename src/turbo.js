@@ -12,6 +12,7 @@ class Turbo {
 
             text: {
                 save: 'Uložiť',
+                confirm: 'Potvrdiť',
                 cancel: 'Zrušiť',
                 dialog_window: 'Dialógové okno',
                 info: 'Info',
@@ -235,7 +236,7 @@ class Turbo {
                 </div>
                 <div class="turbo-confirmation-controls">
                     <button class="confirmation-reject">${this.settings.text.cancel}</button>
-                    <button class="confirmation-resolve">${this.settings.text.save}</button>
+                    <button class="confirmation-resolve">${this.settings.text.confirm}</button>
                 </div>
             </div>`;
 

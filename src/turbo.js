@@ -18,8 +18,6 @@ class Turbo {
                 info: 'Info',
                 hide: 'Skryť',
                 empty: 'Je tu prázdno',
-                new_item: 'Nová položka',
-                name_label: 'Názov položky',
             },
 
             notification: {
@@ -267,7 +265,7 @@ class Turbo {
      */
     showDialog(heading, content, buttons = {}, id = '') {
         const dialogHeading = heading ? heading : this.settings.text.dialog_window;
-        const dialogContent = content ? content : `<h1>Nothing there</h1>`;
+        const dialogContent = content ? content : `<h1>${this.settings.text.empty}</h1>`;
         const dialogPrimaryButton = {
             value: buttons.primaryButton?.value ? buttons.primaryButton.value : this.settings.text.save,
             class: buttons.primaryButton?.class ? buttons.primaryButton.class : '',

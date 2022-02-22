@@ -44,9 +44,14 @@ class Turbo {
         }
     }
 
+    /**
+     * Log some messages
+     * @param message
+     */
     log(message) {
         this.settings.logger.custom ? this.settings.logger.custom(message) : console.log(message);
     }
+
     /**
      * Check if object is empty
      * @param object
@@ -99,7 +104,7 @@ class Turbo {
         loader.classList.add('turbo-loader');
         loader.innerHTML = `<img src="${this.settings.loaderPath}" alt="loader">`;
 
-        this.showElement(loader, 'body', 'append', this.settings.animation.showClass, 100);
+        this.showElement(loader, 'body', 'append');
         loader.style.left = (loader.offsetLeft - loader.offsetWidth / 2) + 'px';
         loader.style.top = (loader.offsetTop - loader.offsetHeight / 2) + 'px';
     }

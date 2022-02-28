@@ -181,7 +181,7 @@ class Validator extends Turbo {
             let errorMessage = document.createElement('div');
             errorMessage.classList.add('turbo-error');
             errorMessage.innerHTML = `<p class="form-error">${errors[inputName]}</p>`;
-            const input = form.querySelector((floatingPlaceholder ? '.input-wrap label' : `[name="${inputName}"]`));
+            const input = floatingPlaceholder ? form.querySelector(`input[name="${inputName}"]`).parentElement.querySelector('label') : form.querySelector(`input[name="${inputName}"]`);
             this.showElement(errorMessage, input, 'insertAfter');
         }
     }

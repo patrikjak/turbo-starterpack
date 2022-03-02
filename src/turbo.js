@@ -521,13 +521,19 @@ class Turbo {
 
     setCheckedState(table, checked, rowsId = []) {
         let checkboxes;
+        const allCheckboxes = table.querySelectorAll('input[type="checkbox"]');
+
         if (rowsId.length === 0) {
-            checkboxes = table.querySelectorAll('input[type="checkbox"]');
+            checkboxes = allCheckboxes;
         } else {
             checkboxes = [];
 
             for (let i = 0; i < rowsId.length; i++) {
                 checkboxes.push(table.querySelector(`tr[data-id="${rowsId[i]}"] input[type="checkbox"]`));
+            }
+
+            if (allCheckboxes.length - 1 === checkboxes.length) {
+                table.querySelector('#checkbox-all').checked = true;
             }
         }
 

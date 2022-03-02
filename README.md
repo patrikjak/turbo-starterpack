@@ -20,14 +20,15 @@ turbo.settings = {
     },
 
     text: {
-        save: 'Uložiť',
-        cancel: 'Zrušiť',
-        dialog_window: 'Dialógové okno',
+        save: 'Save',
+        edit: 'Edit',
+        delete: 'Delete',
+        confirm: 'Confirm',
+        cancel: 'Cancel',
+        dialog_window: 'Dialog window',
         info: 'Info',
-        hide: 'Skryť',
-        empty: 'Je tu prázdno',
-        new_item: 'Nová položka',
-        name_label: 'Názov položky',
+        hide: 'Hide',
+        empty: 'Empty',
     },
 
     notification: {

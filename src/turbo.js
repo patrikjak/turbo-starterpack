@@ -11,13 +11,15 @@ class Turbo {
             },
 
             text: {
-                save: 'Uložiť',
-                confirm: 'Potvrdiť',
-                cancel: 'Zrušiť',
-                dialog_window: 'Dialógové okno',
+                save: 'Save',
+                edit: 'Edit',
+                delete: 'Delete',
+                confirm: 'Confirm',
+                cancel: 'Cancel',
+                dialog_window: 'Dialog window',
                 info: 'Info',
-                hide: 'Skryť',
-                empty: 'Je tu prázdno',
+                hide: 'Hide',
+                empty: 'Empty',
             },
 
             notification: {
@@ -255,6 +257,7 @@ class Turbo {
 
             this.addEventListener('.turbo-confirmation .confirmation-reject', 'click', () => {
                 this.hideElement(confirmationOverlay);
+                reject();
             });
         });
     }
@@ -451,6 +454,101 @@ class Turbo {
             arrow.classList.remove(inverse ? 'arrow-top' : 'arrow-bottom');
             arrow.classList.add(inverse ? 'arrow-bottom' : 'arrow-top');
         }
+    }
+
+    /**
+     * Check checkboxes in table and show edit and delete buttons
+     * @param table
+     */
+    tableActionsBinding(table) {
+        const checkboxes = table.querySelectorAll('input[type="checkbox"]');
+
+        for (let i = 0; i < checkboxes.length; i++) {
+            this.addEventListener(checkboxes[i], 'change', () => {
+                const editButtonSelector = '.table-actions .edit-item';
+                const deleteButtonSelector = '.table-actions .delete-item';
+
+                if (checkboxes[i].id === 'checkbox-all') {
+                    checkboxes[i].checked ? this.setCheckedState(table, true) : this.setCheckedState(table, false);
+                }
+
+                const countOfChecked = this.getChecked(table).length;
+
+                if (countOfChecked > 0) {
+                    if (countOfChecked === 1) {
+                        this.showElement(this.tableActionButton('edit'), table.querySelector('.table-actions .add-item'), 'insertAfter', 'inline-block');
+                    } else {
+                        if (document.querySelector(editButtonSelector)) {
+                            turbo.hideElement(editButtonSelector);
+                        }
+                    }
+                    if (!document.querySelector(deleteButtonSelector)) {
+                        this.showElement(this.tableActionButton('delete'), table.querySelector('.table-actions'), '', 'inline-block');
+                    }
+
+                    let allChecked = false;
+
+                    if (checkboxes.length - (document.querySelector('#checkbox-all').checked ? 0 : 1) === countOfChecked) {
+                        allChecked = true;
+                    }
+
+                    table.querySelector('#checkbox-all').checked = allChecked;
+                } else {
+                    if (document.querySelector(editButtonSelector)) {
+                        this.hideElement(editButtonSelector);
+                    }
+
+                    if (document.querySelector(deleteButtonSelector)) {
+                        this.hideElement(deleteButtonSelector);
+                    }
+                }
+            });
+        }
+    }
+
+    getChecked(table) {
+        let checkedRows = [];
+        const checkboxes = table.querySelectorAll('input[type="checkbox"]');
+
+        for (let i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                checkedRows.push(checkboxes[i].closest('tr'));
+            }
+        }
+
+        return checkedRows;
+    }
+
+    setCheckedState(table, checked, rowsId = []) {
+        let checkboxes;
+        if (rowsId.length === 0) {
+            checkboxes = table.querySelectorAll('input[type="checkbox"]');
+        } else {
+            checkboxes = [];
+
+            for (let i = 0; i < rowsId.length; i++) {
+                checkboxes.push(table.querySelector(`tr[data-id="${rowsId[i]}"] input[type="checkbox"]`));
+            }
+        }
+
+        for (let i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = !!checked;
+        }
+    }
+
+    tableActionButton(action, additionalClasses = [], id = '') {
+        const classes = (additionalClasses.length ? ' ' : '') + additionalClasses.join(' ');
+        let button = document.createElement('button');
+
+        button.setAttribute('class', `table-action-button ${action}-item${classes}`);
+
+        if (id !== '') {
+            button.setAttribute('id', id);
+        }
+
+        button.textContent = action === 'edit' ? this.settings.text.edit : this.settings.text.delete;
+
+        return button;
     }
 
 }

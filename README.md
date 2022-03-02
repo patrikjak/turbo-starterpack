@@ -187,6 +187,26 @@ style.y = position.bottom - position.top + position.height;
 turbo.toggleDropdown(dropdownContent, style, langSwitcher.querySelector('.arrow'), true);
 ```
 
+`tableActionsBinding` - show edit and delete buttons for table actions, check and uncheck checkboxes in table
+
+```js
+const table = document.querySelector('#my-table');
+
+turbo.tableActionsBinding(table, '')
+```
+
+`setCheckedState` - check or uncheck checkboxes in table
+
+Empty array of rowsId will mean all checkboxes should be checked or unchecked
+
+```js
+const table = document.querySelector('#my-table');
+const checked = true;
+const rowsId = [1, 3];
+
+turbo.setCheckedState(table, checked, rowsId);
+```
+
 # Turbo Validator
 ___
 

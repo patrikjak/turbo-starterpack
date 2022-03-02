@@ -193,7 +193,7 @@ turbo.toggleDropdown(dropdownContent, style, langSwitcher.querySelector('.arrow'
 ```js
 const table = document.querySelector('#my-table');
 
-turbo.tableActionsBinding(table, '')
+turbo.tableActionsBinding(table);
 ```
 
 `setCheckedState` - check or uncheck checkboxes in table

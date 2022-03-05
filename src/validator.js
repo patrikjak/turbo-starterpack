@@ -174,7 +174,7 @@ class Validator extends Turbo {
      * @param errors error data where object property is input name attribute
      * @param floatingPlaceholder input has floating placeholders
      */
-    showFormErrors(form, errors, floatingPlaceholder = false) {
+    showFormErrors(form, errors, floatingPlaceholder = true) {
         form = this.beNode(form);
 
         for (const inputName in errors) {

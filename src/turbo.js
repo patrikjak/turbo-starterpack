@@ -475,14 +475,14 @@ class Turbo {
                 const countOfChecked = this.getChecked(table).length;
 
                 if (countOfChecked > 0) {
-                    if (countOfChecked === 1 && checkboxes[0].id !== 'checkbox-all') {
+                    if (countOfChecked === 1 && checkboxes.length > 1) {
                         this.showElement(this.tableActionButton('edit'), table.querySelector('.table-actions .add-item'), 'insertAfter', 'inline-block');
                     } else {
                         if (document.querySelector(editButtonSelector)) {
                             turbo.hideElement(editButtonSelector);
                         }
                     }
-                    if (!document.querySelector(deleteButtonSelector) && checkboxes[0].id !== 'checkbox-all') {
+                    if (!document.querySelector(deleteButtonSelector) && checkboxes.length > 1) {
                         this.showElement(this.tableActionButton('delete'), table.querySelector('.table-actions'), '', 'inline-block');
                     }
 

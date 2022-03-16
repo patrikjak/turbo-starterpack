@@ -473,9 +473,10 @@ class Turbo {
                 }
 
                 const countOfChecked = this.getChecked(table).length;
+                const allCheckboxesSelect = (document.querySelector('#checkbox-all').checked ? 0 : 1);
 
                 if (countOfChecked > 0) {
-                    if (countOfChecked === 1 && checkboxes.length > 1) {
+                    if (countOfChecked - allCheckboxesSelect === 1 && checkboxes.length > 1) {
                         this.showElement(this.tableActionButton('edit'), table.querySelector('.table-actions .add-item'), 'insertAfter', 'inline-block');
                     } else {
                         if (document.querySelector(editButtonSelector)) {
@@ -488,7 +489,7 @@ class Turbo {
 
                     let allChecked = false;
 
-                    if (checkboxes.length - (document.querySelector('#checkbox-all').checked ? 0 : 1) === countOfChecked) {
+                    if (checkboxes.length - allCheckboxesSelect === countOfChecked) {
                         allChecked = true;
                     }
 

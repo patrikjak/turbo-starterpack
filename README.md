@@ -216,13 +216,14 @@ ___
 ```javascript
 turbo.settings = {
     rulesErrors: {
-        required: 'Pole {fieldName} je povinné',
-        string: 'Pole {fieldName} musí byť reťazec znakov',
-        integer: 'Pole {fieldName} musí byť číslo',
-        max: 'Maximálna dĺžka je {additionalValue}',
-        min: 'Minimálna dĺžka je {additionalValue}',
-        maxNum: 'Maximálne číslo je {additionalValue}',
-        minNum: 'Minimálne číslo je {additionalValue}',
+        required: 'Field {fieldName} is required',
+        string: 'Field {fieldName} must be a string',
+        integer: 'Field {fieldName} must be a number',
+        max: 'Maximal length of field {fieldName} is {additionalValue}',
+        min: 'Minimal length of field {fieldName} is {additionalValue}',
+        maxNum: 'Maximum number is {additionalValue}',
+        minNum: 'Minimum number is {additionalValue}',
+        email: 'This email is not valid',
     },
 
     rulesMethods: {

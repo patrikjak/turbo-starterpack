@@ -493,6 +493,10 @@ class Turbo {
                     }
 
                     table.querySelector('#checkbox-all').checked = allChecked;
+
+                    if (this.getChecked(table).length === 0 && document.querySelector(deleteButtonSelector)) {
+                        this.hideElement(deleteButtonSelector);
+                    }
                 } else {
                     if (document.querySelector(editButtonSelector)) {
                         this.hideElement(editButtonSelector);

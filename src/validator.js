@@ -119,25 +119,21 @@ class Validator extends Turbo {
             for (const rule of validationRules) {
                 let valid;
                 let ruleName;
-                let additionalVal = '';
                 let fieldName = '';
+                let additionalValue = '';
                 const colonIndex = rule.indexOf(':');
                 const nameIndex = rule.indexOf('>');
 
                 if (colonIndex !== -1) {
-                    let additionalValue;
-
                     if (nameIndex !== -1) {
                         if (nameIndex < colonIndex) return false;
 
                         ruleName = rule.substr(0, colonIndex);
                         fieldName = rule.substr(nameIndex + 1);
-                        additionalValue = rule.substr(colonIndex + 1, nameIndex);
-                        additionalVal = rule.substr(colonIndex + 1, nameIndex - colonIndex - 1);
+                        additionalValue = rule.substr(colonIndex + 1, nameIndex - colonIndex - 1);
                     } else {
                         additionalValue = rule.substr(colonIndex + 1);
                         ruleName = rule.substr(0, colonIndex);
-                        additionalVal = rule.substr(colonIndex + 1);
                     }
                     valid = this.settings.rulesMethods[ruleName](testValue, additionalValue);
                 } else {
@@ -155,7 +151,7 @@ class Validator extends Turbo {
                     let ruleError = this.settings.rulesErrors[ruleName];
 
                     if (ruleError.indexOf('{additionalValue}') > -1) {
-                        ruleError = ruleError.replace('{additionalValue}', additionalVal);
+                        ruleError = ruleError.replace('{additionalValue}', additionalValue);
                     }
 
                     if (ruleError.indexOf('{fieldName}') > -1) {

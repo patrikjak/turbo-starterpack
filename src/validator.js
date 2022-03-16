@@ -28,6 +28,7 @@ class Validator extends Turbo {
             min: this.minLength,
             maxNum: this.maxNumber,
             minNum: this.minNumber,
+            email: this.email,
         };
     }
 

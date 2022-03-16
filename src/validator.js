@@ -18,7 +18,7 @@ class Validator extends Turbo {
             maxNum: 'Maximum number is {additionalValue}',
             minNum: 'Minimum number is {additionalValue}',
             email: 'This email is not valid',
-        }
+        };
 
         this.settings.rulesMethods = {
             required: this.notEmpty,

@@ -376,7 +376,6 @@ class Turbo {
     }
 
     floatingPlaceholders(element = '') {
-        let floatingPlaceholders;
         let searchIn;
 
         if (element === '') {
@@ -386,14 +385,20 @@ class Turbo {
             searchIn = document;
         }
 
-        floatingPlaceholders = searchIn.querySelectorAll('.input-wrap input:not([type="submit"])');
+        let inputs = searchIn.querySelectorAll('.input-wrap input:not([type="submit"])');
+        let textareas = searchIn.querySelectorAll('.input-wrap textarea');
 
-        for (let i = 0; i < floatingPlaceholders.length; i++) {
-            if (floatingPlaceholders[i].value !== '') {
-                floatingPlaceholders[i].classList.add('filled');
+        this.bindFloatingInput(inputs);
+        this.bindFloatingInput(textareas);
+    }
+
+    bindFloatingInput(inputs) {
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].value !== '') {
+                inputs[i].classList.add('filled');
             }
 
-            turbo.addEventListener(floatingPlaceholders[i], 'input', (e) => {
+            this.addEventListener(inputs[i], 'input', (e) => {
                 if (e.target.value !== '') {
                     e.target.classList.add('filled');
                 } else {
@@ -479,7 +484,7 @@ class Turbo {
                         this.showElement(this.tableActionButton('edit'), table.querySelector('.table-actions .add-item'), 'insertAfter', 'inline-block');
                     } else {
                         if (document.querySelector(editButtonSelector)) {
-                            turbo.hideElement(editButtonSelector);
+                            this.hideElement(editButtonSelector);
                         }
                     }
                     if (!document.querySelector(deleteButtonSelector) && checkboxes.length > 1) {

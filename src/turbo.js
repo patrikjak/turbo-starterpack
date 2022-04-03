@@ -46,6 +46,14 @@ class Turbo {
         }
     }
 
+    addGlobalEventListener(type, selector, callback, options, parent = document) {
+        parent.addEventListener(type, e => {
+            if (e.target.matches(selector)) {
+                callback(e);
+            }
+        }, options);
+    }
+
     /**
      * Log some messages
      * @param message
